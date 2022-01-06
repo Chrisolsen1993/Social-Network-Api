@@ -1,4 +1,4 @@
-const { Student, Course } = require('../models');
+const { User, thought } = require('../models');
 
 // Aggregate function to get the number of students overall
 const headCount = async () =>
@@ -19,23 +19,31 @@ const grade = async (studentId) =>
 
 module.exports = {
   // Get all students
-  getStudents(req, res) {
-    Student.find()
-      .then(async (students) => {
-        const studentObj = {
-          students,
-          headCount: await headCount(),
-        };
-        return res.json(studentObj);
-      })
+  getAllUser(req, res) {
+    User.find()
+    .then((users) => res.json(users))
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
       });
   },
+//another way of getting the User
+// getAllUser(async (req, res)){
+//   try {
+//     const res = await User.collection.insertMany(userData);
+//     console.log(res.ops);
+//   } catch (error) {
+//     return console.log(err);
+//   }
+// }
+
+
+
   // Get a single student
-  getSingleStudent(req, res) {
-    Student.findOne({ _id: req.params.studentId })
+  getSingleUser(req, res) {
+    User.findOne({ _id: req.params.userId })
+      .populate('thoughts')
+      .populate('friends')
       .select('-__v')
       .then(async (student) =>
         !student
