@@ -117,45 +117,48 @@
 // // Export the functions for use in seed.js
 // module.exports = { getRandomName, getRandomAssignments };
 
-const userData=[
+const userData = [
   {
     "userName": "Leo",
     "email": "teo1@gmail.com",
-    "thought":[],
-    "friend":[],
+    "thought": [],
+    "friend": [],
   },
 
   {
     "userName": "Olo",
     "email": "pit1@gmail.com",
-    "thought":[],
-    "friend":[],
+    "thought": [],
+    "friend": [],
   },
 
   {
     "userName": "Paul",
     "email": "jea@gmail.com",
-    "thought":[],
-    "friend":[],
+    "thought": [],
+    "friend": [],
   },
 
 ]
 
-const thoughtData=[
+const thoughtData = [
 
-  { "thoughtText":"cool thought",
+  {
+    "thoughtText": "cool thought",
     "userName": "Leo",
-    "reaction":[],
+    "reaction": [],
   },
 
-  { "thoughtText":" great one",
+  {
+    "thoughtText": " great one",
     "userName": "Olo",
-    "reaction":[],
+    "reaction": [],
   },
 
-  { "thoughtText":"Not bad",
+  {
+    "thoughtText": "Not bad",
     "userName": "Paul",
-    "reaction":[],
+    "reaction": [],
   },
 
 ]
