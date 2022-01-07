@@ -15,6 +15,8 @@ async getAllUser (req, res){
 async getSingleUser (req, res){
   try {
     const singleUser = await User.findOne({ _id: req.params.userId })
+    .populate('thoughts')
+    .populate('friends')
     console.log(singleUser);
     if (!singleUser){
      res.json("user not found")
