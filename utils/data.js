@@ -159,6 +159,7 @@ const thoughtData = [
     "thoughtText": "Not bad",
     "userName": "Paul",
     "reaction": [],
+    
   },
 
 ]
