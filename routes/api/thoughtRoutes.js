@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  // getCourses,
+  getThoughts,
   // getSingleCourse,
   createThought,
   // updateCourse,
@@ -9,7 +9,7 @@ const {
 
 // /api/courses
 router.route('/')
-// .get(getCourses)
+.get(getThoughts)
 .post(createThought);
 
 // /api/courses/:courseId

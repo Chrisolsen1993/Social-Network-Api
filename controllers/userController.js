@@ -1,7 +1,7 @@
 const { User, thought } = require('../models');
 
 module.exports = {
-  
+  //get alluser
 async getAllUser (req, res){
   try {
     const userData = await User.find()
@@ -23,7 +23,7 @@ async getSingleUser (req, res){
     }
     res.json(singleUser)
   } catch (error) {
-    return console.log(err);
+    return console.log(error);
   }
 },
 //create user
@@ -63,6 +63,16 @@ try{
 } catch (error) {
   return console.log(err);
 }
+
+},
+//add a new friend to user friend list
+async  AddFriendToUser(req, res){
+  try {
+    friendData = await User.findOneAndUpdate({_id: req.params.userId}, {$addToSet: { friend: req.body}} )
+    
+  } catch (error) {
+    
+  }
 
 
 }

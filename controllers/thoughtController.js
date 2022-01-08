@@ -18,15 +18,54 @@ module.exports = {
   //     )
   //     .catch((err) => res.status(500).json(err));
   // },
-  // Create a course
+
+  // get a thought
+  async getThoughts (req, res){
+    try {
+      const thoughtData = await Thought.find()
+      console.log(thoughtData);
+      res.json(thoughtData)
+    } catch (error) {
+      return console.log(err);
+    }
+  },
+
+
+
+  // Create a thought
   createThought(req, res) {
     Thought.create(req.body)
-      .then((data) => res.json(data))
+    .then((data) => {
+      return User.findOneAndUpdate(
+        { _id: req.body.userId },
+        { $push: { thoughts: data._id } },
+        { new: true }
+      );
+    })
+    .then(dbUserData => {
+      if (!dbUserData) {
+          res.json({ message: 'thought created, but no user with this ID' });
+          return;
+      }
+      res.json(dbUserData);
+    })
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
       });
   },
+
+//create a thought
+// async createThought (req, res){
+//   try {
+//     const thoughtData = await thought.create(req.body)
+//     console.log(thoughtData);
+//     res.json(userData)
+//   } catch (error) {
+//     return console.log(err);
+//   }
+// },
+
   // Delete a course
 //   deleteCourse(req, res) {
 //     Course.findOneAndDelete({ _id: req.params.courseId })
