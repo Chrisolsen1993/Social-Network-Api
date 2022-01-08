@@ -61,17 +61,21 @@ try{
     res.json("User has been deleted")
 
 } catch (error) {
-  return console.log(err);
+  return console.log(error);
 }
 
 },
 //add a new friend to user friend list
 async  AddFriendToUser(req, res){
   try {
-    friendData = await User.findOneAndUpdate({_id: req.params.userId}, {$addToSet: { friend: req.body}} )
-    
+    friendData = await User.findOneAndUpdate({_id: req.params.userId}, {$addToSet: { friend: req.friendId}}, { runValidators: true, new: true } )
+    console.log(friendData)
+    if (!friendData){
+      res.json("user not found with that id")
+     }
+    res.json("Friend has been added")
   } catch (error) {
-    
+    return console.log(error)
   }
 
 
